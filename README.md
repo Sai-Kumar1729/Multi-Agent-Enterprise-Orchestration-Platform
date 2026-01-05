@@ -84,3 +84,35 @@ ngrok http 8000
 
 
 
+### 2. UiPath Robot (Agent 4)
+* Open `uipath_robot/Main.xaml` in **UiPath Studio**.
+* Publish the package to your local Orchestrator or run in "Debug" mode to test the SharePoint integration.
+
+### 3. Copilot Configuration
+* Import the YAML logic from `copilot_config/` into Copilot Studio.
+* Update the **HTTP Request** node with your active `ngrok` URL.
+
+---
+
+## 📸 Usage Scenario (The "Golden Path")
+
+> **User:** "What is the current defect rate?"
+>
+> **System:** "The current defect rate is **2.72%**." *(Fetched via Python)*
+
+> **User:** "Is that compliant?"
+>
+> **System:** "No. Policy Q-202 limits defects to 2.0%." *(Fetched via RAG)*
+
+> **User:** "Initiate remediation."
+>
+> **System:** "✅ Incident ticket **#INC-9921** created in SharePoint." *(Triggered via UiPath)*
+
+---
+
+## 🔮 Future Roadmap
+* **Self-Healing:** Fully automate the loop to trigger robots without human confirmation for critical safety events.
+* **Vision AI:** Integrate Computer Vision at the edge to detect defects visually before they hit the database.
+
+---
+*Engineered by **Sai Kumar***
