@@ -42,3 +42,42 @@ agentic-industrial-orchestrator/
 └── README.md                 # Project Documentation
 
 
+---
+
+## 🧩 The Agent Ecosystem
+
+### 🤖 Agent 1: The Orchestrator (Microsoft Copilot Studio)
+* **Role:** The "Brain" - Handles user intent and routes tasks.
+* **Key Feature:** Dynamic conversation chaining (e.g., if Defect Rate > 2%, it automatically asks to trigger a fix).
+
+### 📊 Agent 2: Data Intelligence (Python + FastAPI)
+* **Role:** The "Eyes" - Quantitative Analysis.
+* **Stack:** `FastAPI`, `Pandas`, `Uvicorn`.
+* **Function:** Exposes a local REST API via **ngrok** to calculate real-time statistics from `manufacturing_metrics.csv`.
+
+### 📚 Agent 3: Knowledge Retrieval (RAG)
+* **Role:** The "Memory" - Compliance Checking.
+* **Function:** Uses Vector Search to query unstructured PDF documents (Standard Operating Procedures).
+* **Goal:** Verifies if current production metrics violate ISO-9001 safety policies.
+
+### ⚡ Agent 4: Autonomous Action (UiPath RPA)
+* **Role:** The "Hands" - Remediation.
+* **Function:** Attended robot triggered by API.
+* **Workflow (`Main.xaml`):**
+    1.  Receives Defect Rate payload.
+    2.  Logs a high-priority incident in **SharePoint**.
+    3.  Sends an alert email to the shift supervisor.
+
+---
+
+## 🛠️ Setup & Installation
+
+### 1. Backend Setup (Agent 2)
+```bash
+cd backend_api
+pip install -r requirements.txt
+python agent2_api.py
+# In a separate terminal, expose the port:
+ngrok http 8000
+
+
