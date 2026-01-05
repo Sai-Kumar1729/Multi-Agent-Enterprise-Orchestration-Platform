@@ -10,7 +10,7 @@ The system uses a **Hub-and-Spoke Agentic Architecture** where **Microsoft Copil
 ---
 
 ## 🏗️ System Architecture
-![System Architecture](architecture/system_diagram.png)
+![System Architecture](architecture/architecture.png)
 
 The architecture follows a closed-loop control pattern:
 1.  **Sense:** The Python Agent fetches live telemetry (Defect Rates, Yield).
@@ -40,3 +40,4 @@ agentic-industrial-orchestrator/
 │   └── system_diagram.png    # High-level architectural view
 │
 └── README.md                 # Project Documentation
+
