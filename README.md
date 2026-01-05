@@ -40,7 +40,7 @@ agentic-industrial-orchestrator/
 │   └── system_diagram.png    # High-level architectural view
 │
 └── README.md                 # Project Documentation
-
+```
 ---
 
 🧩 The Agent Ecosystem
@@ -101,6 +101,7 @@ User: "What is the current defect rate?" System: "The current defect rate is 2.7
 User: "Is that compliant?" System: "No. Policy Q-202 limits defects to 2.0%." (Fetched via RAG)
 
 User: "Initiate remediation." System: "✅ Incident ticket #INC-9921 created in SharePoint." (Triggered via UiPath)
+
 
 
 
