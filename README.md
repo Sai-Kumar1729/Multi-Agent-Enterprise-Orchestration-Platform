@@ -41,43 +41,66 @@ agentic-industrial-orchestrator/
 │
 └── README.md                 # Project Documentation
 
-
 ---
 
-## 🧩 The Agent Ecosystem
+🧩 The Agent Ecosystem
+🤖 Agent 1: The Orchestrator (Microsoft Copilot Studio)
+Role: The "Brain" - Handles user intent and routes tasks.
 
-### 🤖 Agent 1: The Orchestrator (Microsoft Copilot Studio)
-* **Role:** The "Brain" - Handles user intent and routes tasks.
-* **Key Feature:** Dynamic conversation chaining (e.g., if Defect Rate > 2%, it automatically asks to trigger a fix).
+Key Feature: Dynamic conversation chaining (e.g., if Defect Rate > 2%, it automatically asks to trigger a fix).
 
-### 📊 Agent 2: Data Intelligence (Python + FastAPI)
-* **Role:** The "Eyes" - Quantitative Analysis.
-* **Stack:** `FastAPI`, `Pandas`, `Uvicorn`.
-* **Function:** Exposes a local REST API via **ngrok** to calculate real-time statistics from `manufacturing_metrics.csv`.
+📊 Agent 2: Data Intelligence (Python + FastAPI)
+Role: The "Eyes" - Quantitative Analysis.
 
-### 📚 Agent 3: Knowledge Retrieval (RAG)
-* **Role:** The "Memory" - Compliance Checking.
-* **Function:** Uses Vector Search to query unstructured PDF documents (Standard Operating Procedures).
-* **Goal:** Verifies if current production metrics violate ISO-9001 safety policies.
+Stack: FastAPI, Pandas, Uvicorn.
 
-### ⚡ Agent 4: Autonomous Action (UiPath RPA)
-* **Role:** The "Hands" - Remediation.
-* **Function:** Attended robot triggered by API.
-* **Workflow (`Main.xaml`):**
-    1.  Receives Defect Rate payload.
-    2.  Logs a high-priority incident in **SharePoint**.
-    3.  Sends an alert email to the shift supervisor.
+Function: Exposes a local REST API via ngrok to calculate real-time statistics from manufacturing_metrics.csv.
 
----
+📚 Agent 3: Knowledge Retrieval (RAG)
+Role: The "Memory" - Compliance Checking.
 
-## 🛠️ Setup & Installation
+Function: Uses Vector Search to query unstructured PDF documents (Standard Operating Procedures).
 
-### 1. Backend Setup (Agent 2)
-```bash
+Goal: Verifies if current production metrics violate ISO-9001 safety policies.
+
+⚡ Agent 4: Autonomous Action (UiPath RPA)
+Role: The "Hands" - Remediation.
+
+Function: Attended robot triggered by API.
+
+Workflow (Main.xaml):
+
+Receives Defect Rate payload.
+
+Logs a high-priority incident in SharePoint.
+
+Sends an alert email to the shift supervisor.
+
+🛠️ Setup & Installation
+1. Backend Setup (Agent 2)
+Bash
+
 cd backend_api
 pip install -r requirements.txt
 python agent2_api.py
 # In a separate terminal, expose the port:
 ngrok http 8000
+2. UiPath Robot (Agent 4)
+Open uipath_robot/Main.xaml in UiPath Studio.
+
+Publish the package to your local Orchestrator or run in "Debug" mode to test the SharePoint integration.
+
+3. Copilot Configuration
+Import the YAML logic from copilot_config/ into Copilot Studio.
+
+Update the HTTP Request node with your active ngrok URL.
+
+📸 Usage Scenario (The "Golden Path")
+User: "What is the current defect rate?" System: "The current defect rate is 2.72%." (Fetched via Python)
+
+User: "Is that compliant?" System: "No. Policy Q-202 limits defects to 2.0%." (Fetched via RAG)
+
+User: "Initiate remediation." System: "✅ Incident ticket #INC-9921 created in SharePoint." (Triggered via UiPath)
+
 
 
